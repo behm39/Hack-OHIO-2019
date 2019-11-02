@@ -72,7 +72,7 @@
         });
 
         joinBtn.addEventListener('click', () => {
-            let url = "http://" + window.location.hostname + ":" + window.location.port + '/room?num=' + sessionInput.value;
+            let url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + '/room?num=' + sessionInput.value.toUpperCase();
             fetch(url).then((data) => {
                 window.location.href = data.url;
             });
