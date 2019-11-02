@@ -1,14 +1,20 @@
 const express = require('express');
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send("Hello World!");
-});
+app.use(express.static('./public'));
 
-app.get('/socket-demo', (req, res) => {
-    res.sendFile(__dirname + 'socket.html');
-});
-
-app.listen(8000, () => {
+var server = app.listen(8000, () => {
     console.log('App listening on port 8000!');
 });
+
+app.get('/socket', (req, res) => {
+    res.sendFile(__dirname + '/public/socket.html');
+});
+
+var io = require('socket.io')(server);
+
+// Add a connect listener
+io.on('connection', (socket) => {
+    console.log('Client connected.');
+});
+
