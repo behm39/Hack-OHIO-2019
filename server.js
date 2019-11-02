@@ -20,7 +20,7 @@ app.get('/room', (req, res) => {
     if (sockets.roomExists(roomNum)) {
         return res.sendFile(__dirname + '/public/room.html');
     } else {
-        return res.redirect("https://google.com/teapot");
+        return res.sendFile(__dirname + '/public/error.html');
     }
 });
 
