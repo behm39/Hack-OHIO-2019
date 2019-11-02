@@ -3,10 +3,12 @@ const app = express();
 const sockets = require('./socket');
 const fileUpload = require('express-fileupload');
 
+let PORT = process.env.PORT || 8000; 
+
 app.use(fileUpload());
 
-var server = app.listen(8000, () => {
-    console.log('App listening on port 8000!');
+var server = app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}!`);
 });
 
 app.get('/', (req, res) => {
