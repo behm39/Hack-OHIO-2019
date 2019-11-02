@@ -14,10 +14,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script>
         var socket = io();
-        socket.on('news', (data) => {
+        socket.on('announcement', (data) => {
             console.log(data);
-            socket.emit('my other event', {foo: 'hello world!'});
         });
+
+        socket.on('update-map', (data) => {
+            // update the mind map state
+            console.log(data);
+        });
+
     </script>
 </body>
 
