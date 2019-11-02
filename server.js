@@ -13,8 +13,6 @@ app.get('/', (req, res) => {
 app.get('/room', (req, res) => {
     let roomNum = req.query.num;
     if (sockets.roomExists(roomNum)) {
-        // TODO: add them to the room
-        console.log(roomNum);
         return res.sendFile(__dirname + '/public/room.html');
     } else {
         return res.redirect("https://google.com/teapot");

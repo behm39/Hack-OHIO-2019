@@ -6,11 +6,22 @@ function initSockets(server) {
     var io = require('socket.io')(server);
 
     io.on('connection', (socket) => {
+        // if (!socket) {
+        //     return;
+        // }
         console.log(`Connection: ${socket.id}`);
-        socket.join('only-room');
+
+        // add the socket to the room
+        let roomNum = socket.handshake.query.num;
+        getRoom(roomNum).addConnection(socket.id);
+        socket.join('roomNum');
+
+        console.log(rooms);
 
         socket.on('disconnect', (reason) => {
             console.log(`Disconnect: ${socket.id}`);
+            getRoom(roomNum).removeConnection(socket.id);
+            console.log(rooms);
         });
 
         io.to('only-room').emit('announcement', {
@@ -61,15 +72,17 @@ function createRoom(rootName) {
     });
 }
 
-function roomExists(roomNumber) {
-    let exists = false;
+function getRoom(roomNum) {
     for (let i = 0; i < rooms.length; i++) {
-        if (rooms[i].num == roomNumber) {
-            exists = true;
-            break;
+        if (rooms[i].num == roomNum) {
+            return rooms[i];
         }
     }
-    return exists;
+    return null;
+}
+
+function roomExists(roomNumber) {
+    return getRoom(roomNumber) != null;
 }
 
 function generateNumber() {
@@ -92,3 +105,4 @@ function generateNumber() {
 module.exports.initSockets = initSockets;
 module.exports.createRoom = createRoom;
 module.exports.roomExists = roomExists;
+module.exports.getRoom = getRoom;

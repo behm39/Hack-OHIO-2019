@@ -10,9 +10,11 @@ class Room {
     }
 
     removeConnection(connection) {
-        this.connections = this.connections.filter((con) => {
-            con != connection;
-        });
+        for (let i = this.connections.length - 1; i >= 0; i--) {
+            if (this.connections[i] == connection) {
+                this.connections.splice(i, 1);
+            }
+        }
     }
     
     isEmpty() {
