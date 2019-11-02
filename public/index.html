@@ -45,11 +45,6 @@
                             <input type="file" name="myfile" onchange="this.form.submit()" />
                         </div>
                     </form>
-                    <!-- <div class="upload-btn-wrapper" id="upload">
-                        <button class="btn btn-outline-danger">Upload a File</button>
-                        <input type="file" name="myfile" />
-                    </div> -->
-
                 </div>
             </div>
 
@@ -70,7 +65,7 @@
         let subjectInput = document.getElementById('subject');
         let sessionInput = document.getElementById('sessionCode');
         hostBtn.addEventListener('click', () => {
-            let url = "http://" + window.location.hostname + ":" + window.location.port + '/host?subject=' + subjectInput.value;
+            let url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + '/host?subject=' + subjectInput.value;
             fetch(url).then((data) => {
                 window.location.href = data.url;
             });
