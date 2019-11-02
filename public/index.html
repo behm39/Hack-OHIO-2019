@@ -38,10 +38,17 @@
                     <input id="subject" type="text" class="form-control" placeholder="Session Subject" aria-label=""
                         aria-describedby="basic-addon1">
 
-                    <div class="upload-btn-wrapper" id="upload">
+                    <form ref='uploadForm' id='uploadForm' action='/host-upload' method='post'
+                        encType="multipart/form-data">
+                        <div class="upload-btn-wrapper" id="upload">
+                            <button class="btn btn-outline-danger">Upload a File</button>
+                            <input type="file" name="myfile" onchange="this.form.submit()" />
+                        </div>
+                    </form>
+                    <!-- <div class="upload-btn-wrapper" id="upload">
                         <button class="btn btn-outline-danger">Upload a File</button>
                         <input type="file" name="myfile" />
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
