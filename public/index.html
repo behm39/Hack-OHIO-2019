@@ -24,12 +24,17 @@
         <div id="forms">
 
             <div id="host">
-                <span class="input-group-btn" id="newRoom">
-                    <button class="btn btn-outline-primary" type="button">Host New Room</button>
-                </span>
-                <div class="upload-btn-wrapper" id="upload">
-                    <button class="btn btn-outline-danger">Upload a File</button>
-                    <input type="file" name="myfile" />
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-primary" type="button">Host New Room</button>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Session Subject" aria-label="" aria-describedby="basic-addon1">
+                
+                    <div class="upload-btn-wrapper" id="upload">
+                        <button class="btn btn-outline-danger">Upload a File</button>
+                        <input type="file" name="myfile" />
+                    </div>
+
                 </div>
             </div>
 
