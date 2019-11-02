@@ -1,24 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title></title>
-  <meta name="author" content="">
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link href="css/normalize.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.9.4/cytoscape.min.js"></script>
+    <style>
+        #cy {
+            width: 900px;
+            height: 900px;
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
 
-  <p>Hello, world!</p>
+    <div id="cy"></div>
+    <script>
+        // var cytoscape = require('cytoscape');
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/arbor/0.91.0/arbor.js"></script>
-  <script src="js/script.js"></script>
+        var myObj = {
+            root: "car", nodes: [
+                { val: "wheel", parent: "car" },
+                { val: "door", parent: "car" },
+                { val: "console", parent: "car" },
+                { val: "seat", parent: "car" },
+                { val: "leather", parent: "seat" },
+                { val: "cushion", parent: "seat" },
+                { val: "fabric", parent: "seat" },
+                { val: "hood", parent: "car" },
+                { val: "center", parent: "console" }
+            ]
+        };
+
+        function buildElements(data) {
+            var elements = [];
+            // push root
+            elements.push({ data: { id: data.root } })
+            let nodes = data.nodes;
+            // push nodes
+            for (let i = 0; i < nodes.length; i++) {
+                elements.push({ data: { id: nodes[i].val } })
+            }
+            // push edges
+            for (let i = 0; i < nodes.length; i++) {
+                elements.push({ data: { id: nodes[i].val + nodes[i].parent, source: nodes[i].val, target: nodes[i].parent } })
+            }
+            return elements;
+        }
+
+        console.log(buildElements(myObj));
+        
+
+        var cy = cytoscape({
+
+            container: document.getElementById('cy'), // container to render in
+
+            elements: buildElements(myObj)
+
+            /*elements: [ // list of graph elements to start with
+                { // node a
+                    data: { id: 'a' }
+                },
+                { // node b
+                    data: { id: 'b' }
+                },
+                { // edge ab
+                    data: { id: 'ab', source: 'a', target: 'b' }
+                }
+            ],*/,
+
+            style: [ // the stylesheet for the graph
+                {
+                    selector: 'node',
+                    style: {
+                        'background-color': '#666',
+                        'label': 'data(id)'
+                    }
+                },
+
+                {
+                    selector: 'edge',
+                    style: {
+                        'width': 3,
+                        'line-color': '#ccc',
+                        'target-arrow-color': '#ccc',
+                        'target-arrow-shape': 'triangle'
+                    }
+                }
+            ],
+
+            layout: {
+                name: 'cose'
+            }
+
+        });
+
+    </script>
 </body>
 
 </html>
