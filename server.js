@@ -4,6 +4,7 @@ const app = express();
 var server = app.listen(8000, () => {
     console.log('App listening on port 8000!');
 });
+app.use(express.static('./public'));
 
 var io = require('socket.io')(server);
 
@@ -62,5 +63,3 @@ setInterval(() => {
     });
     count++;
 }, 1000);
-
-app.use(express.static('./public'));
