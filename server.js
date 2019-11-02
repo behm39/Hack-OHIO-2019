@@ -15,22 +15,47 @@ var io = require('socket.io')(server);
 
 // Add a connect listener
 io.on('connection', (socket) => {
-    console.log(`Socket: ${socket.id} connected`);
+    console.log(`Connection: ${socket.id}`);
     socket.join('only-room');
+
+    socket.on('disconnect', (reason) => {
+        console.log(`Disconnect: ${socket.id}`);
+    });
+
     io.to('only-room').emit('announcement', {
         msg: 'This is an announcement!'
     });
 
     io.to('only-room').emit('update-map', {
         root: "car",
-        nodes: [
-            {node: "wheel", parent: "car"},
-            {node: "tire", parent: "wheel"},
-            {node: "rim", parent: "wheel"},
-            {node: "hood", parent: "car"},
-            {node: "spoiler", parent: "car"},
-            {node: "seat", parent: "car"},
-            {node: "fender", parent: "car"},
+        nodes: [{
+                node: "wheel",
+                parent: "car"
+            },
+            {
+                node: "tire",
+                parent: "wheel"
+            },
+            {
+                node: "rim",
+                parent: "wheel"
+            },
+            {
+                node: "hood",
+                parent: "car"
+            },
+            {
+                node: "spoiler",
+                parent: "car"
+            },
+            {
+                node: "seat",
+                parent: "car"
+            },
+            {
+                node: "fender",
+                parent: "car"
+            },
         ]
     });
 });
@@ -42,7 +67,3 @@ setInterval(() => {
     });
     count++;
 }, 1000);
-
-io.to('only-room').emit('update-map', {
-
-});
