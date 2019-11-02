@@ -23,15 +23,16 @@
 
         <div id="forms">
 
-            <div class="input-group form-inline" id="host">
-                <span class="input-group-btn">
-                    <button class="btn btn-outline-primary" type="button">Host</button>
+            <div id="host">
+                <span class="input-group-btn" id="newRoom">
+                    <button class="btn btn-outline-primary" type="button">Host New Room</button>
                 </span>
-                <input type="file" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
-
+                <div class="upload-btn-wrapper" id="upload">
+                    <button class="btn btn-outline-danger">Upload a File</button>
+                    <input type="file" name="myfile" />
+                </div>
             </div>
 
-            </br>
 
             <div class="input-group mb-3" id="join">
             <input type="text" class="form-control" placeholder="Session Code" aria-label="Recipient's username" aria-describedby="basic-addon2">
