@@ -16,5 +16,13 @@ var io = require('socket.io')(server);
 // Add a connect listener
 io.on('connection', (socket) => {
     console.log('Client connected.');
-});
+    
+    socket.emit('news', {
+        msg: 'hello world!'
+    });
 
+    socket.on('my other event', (data) => {
+        console.log(data);
+    });
+
+});
