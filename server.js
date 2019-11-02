@@ -29,31 +29,31 @@ io.on('connection', (socket) => {
     io.to('only-room').emit('update-map', {
         root: "car",
         nodes: [{
-                node: "wheel",
+                val: "wheel",
                 parent: "car"
             },
             {
-                node: "tire",
+                val: "tire",
                 parent: "wheel"
             },
             {
-                node: "rim",
+                val: "rim",
                 parent: "wheel"
             },
             {
-                node: "hood",
+                val: "hood",
                 parent: "car"
             },
             {
-                node: "spoiler",
+                val: "spoiler",
                 parent: "car"
             },
             {
-                node: "seat",
+                val: "seat",
                 parent: "car"
             },
             {
-                node: "fender",
+                val: "fender",
                 parent: "car"
             },
         ]
