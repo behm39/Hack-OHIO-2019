@@ -11,17 +11,22 @@ app.get('/', (req, res) => {
 });
 
 app.get('/room', (req, res) => {
-    console.log(req.query);
     let roomNum = req.query.num;
-    console.log(roomNum);
-    return res.sendFile(__dirname + '/public/room.html');
+    if (sockets.roomExists(roomNum)) {
+        // TODO: add them to the room
+        console.log(roomNum);
+        return res.sendFile(__dirname + '/public/room.html');
+    } else {
+        return res.redirect("https://google.com/teapot");
+    }
 });
 
 app.get('/host', (req, res) => {
     let subject = req.query.subject;
-    let room = sockets.createRoom(subject);
-    console.log(`Creating Room: ${room.num}; Subject: ${subject}`);
-    return res.redirect(`/room?num=${room.num}`);
+    sockets.createRoom(subject).then((room) => {
+        console.log(`Creating Room: ${room.num}; Subject: ${subject}`);
+        return res.redirect(`/room?num=${room.num}`);
+    });
 });
 
 app.use(express.static('./public'));

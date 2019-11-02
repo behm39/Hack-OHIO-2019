@@ -53,10 +53,23 @@ function initSockets(server) {
 }
 
 function createRoom(rootName) {
-    let num = generateNumber();
-    let r = new Room(num, rootName);
-    rooms.push(r);
-    return r;
+    return new Promise((resolve, reject) => {
+        let num = generateNumber();
+        let r = new Room(num, rootName);
+        rooms.push(r);
+        resolve(r);
+    });
+}
+
+function roomExists(roomNumber) {
+    let exists = false;
+    for (let i = 0; i < rooms.length; i++) {
+        if (rooms[i].num == roomNumber) {
+            exists = true;
+            break;
+        }
+    }
+    return exists;
 }
 
 function generateNumber() {
@@ -67,10 +80,8 @@ function generateNumber() {
         for (let i = 0; i < 4; i++) {
             res += available.charAt(Math.floor(Math.random() * available.length));
         }
-        let exists = rooms.find((r) => {
-            r.num == res;
-        }) == undefined;
-        if (exists) {
+
+        if (!roomExists(res)) {
             break;
         }
     }
@@ -80,3 +91,4 @@ function generateNumber() {
 
 module.exports.initSockets = initSockets;
 module.exports.createRoom = createRoom;
+module.exports.roomExists = roomExists;
