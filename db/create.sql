@@ -1,0 +1,4 @@
+create table if not exists ROOT (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    val TEXT TYPE UNIQUE NOT NULL
+); 
