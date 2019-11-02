@@ -6,9 +6,6 @@ function initSockets(server) {
     var io = require('socket.io')(server);
 
     io.on('connection', (socket) => {
-        // if (!socket) {
-        //     return;
-        // }
         console.log(`Connection: ${socket.id}`);
 
         // add the socket to the room

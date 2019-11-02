@@ -48,10 +48,10 @@
 
 
             <div class="input-group mb-3" id="join">
-                <input type="text" class="form-control" placeholder="Session Code" aria-label="Recipient's username"
-                    aria-describedby="basic-addon2">
+                <input id="sessionCode" type="text" class="form-control" placeholder="Session Code"
+                    aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">Join</button>
+                    <button id="joinBtn" class="btn btn-outline-secondary" type="button">Join</button>
                 </div>
             </div>
 
@@ -59,9 +59,18 @@
     </div>
     <script>
         let hostBtn = document.getElementById('hostBtn');
+        let joinBtn = document.getElementById('joinBtn');
         let subjectInput = document.getElementById('subject');
+        let sessionInput = document.getElementById('sessionCode');
         hostBtn.addEventListener('click', () => {
             let url = "http://" + window.location.hostname + ":" + window.location.port + '/host?subject=' + subjectInput.value;
+            fetch(url).then((data) => {
+                window.location.href = data.url;
+            });
+        });
+
+        joinBtn.addEventListener('click', () => {
+            let url = "http://" + window.location.hostname + ":" + window.location.port + '/room?num=' + sessionInput.value;
             fetch(url).then((data) => {
                 window.location.href = data.url;
             });
