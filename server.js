@@ -15,26 +15,8 @@ var io = require('socket.io')(server);
 
 // Add a connect listener
 io.on('connection', (socket) => {
-
-
-    /*
-    var myObj = {root: "text",
-                    {node: "text", parent: "text"},
-                    {node: "text", parent: "text"},
-                    {node: "text", parent: "text"};
-    {
-        root: "rootname",
-        nodes: [
-            {},
-            {},
-
-        ]
-    } */
-
     console.log(`Socket: ${socket.id} connected`);
-
     socket.join('only-room');
-
     io.to('only-room').emit('announcement', {
         msg: 'This is an announcement!'
     });
@@ -51,5 +33,16 @@ io.on('connection', (socket) => {
             {node: "fender", parent: "car"},
         ]
     });
+});
+
+let count = 0;
+setInterval(() => {
+    io.to('only-room').emit('announcement', {
+        msg: `Count: ${count}`
+    });
+    count++;
+}, 1000);
+
+io.to('only-room').emit('update-map', {
 
 });
