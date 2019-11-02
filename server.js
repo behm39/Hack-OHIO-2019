@@ -4,7 +4,15 @@ const app = express();
 var server = app.listen(8000, () => {
     console.log('App listening on port 8000!');
 });
+
+app.get('/room', (req, res) => {
+    let roomNum = req.query.num;
+    console.log(roomNum);
+    res.sendFile(__dirname + '/public/room.html');
+});
+
 app.use(express.static('./public'));
+
 
 var io = require('socket.io')(server);
 
@@ -63,3 +71,6 @@ setInterval(() => {
     });
     count++;
 }, 1000);
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+});
