@@ -11,14 +11,14 @@ function initSockets(server) {
 
         // add the socket to the room
         let roomNum = socket.handshake.query.num;
-        getRoom(roomNum).addConnection(socket.id);
+        let r = getRoom(roomNum);
+        r.addConnection(socket.id);
         socket.join(roomNum);
 
         console.log(rooms);
 
         socket.on('disconnect', (reason) => {
             console.log(`Disconnect: ${socket.id}`);
-            let r = getRoom(roomNum);
             r.removeConnection(socket.id);
             if (r.isEmpty()) {
                 listToDB(r.updates);
