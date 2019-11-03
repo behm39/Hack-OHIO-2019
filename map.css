@@ -3,7 +3,7 @@
     height: 600px;
     display: block;
     color:white !important;
-    background-color: black !important;
+    background-color: #000000 !important;
 }
 
 #code {
@@ -16,6 +16,6 @@
 
 body {
     background-color: black;
-    color: #42abca;
+    color: #0275d8;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
