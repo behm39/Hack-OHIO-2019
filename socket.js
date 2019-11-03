@@ -20,7 +20,7 @@ function initSockets(server) {
             let r = getRoom(roomNum);
             r.removeConnection(socket.id);
             if (r.isEmpty()) {
-                // TODO: Add this to the DB
+                // TODO: Add r.updates to the DB
                 for (let i = rooms.length; i >= 0; i--) {
                     if (r == rooms[i]) {
                         rooms.splice(i, 1);
@@ -30,42 +30,11 @@ function initSockets(server) {
             }
             console.log(rooms);
         });
-
-        io.to('only-room').emit('announcement', {
-            msg: 'This is an announcement!'
-        });
-
-        io.to('only-room').emit('update-map', {
-            root: "car",
-            nodes: [{
-                    val: "wheel",
-                    parent: "car"
-                },
-                {
-                    val: "tire",
-                    parent: "wheel"
-                },
-                {
-                    val: "rim",
-                    parent: "wheel"
-                },
-                {
-                    val: "hood",
-                    parent: "car"
-                },
-                {
-                    val: "spoiler",
-                    parent: "car"
-                },
-                {
-                    val: "seat",
-                    parent: "car"
-                },
-                {
-                    val: "fender",
-                    parent: "car"
-                },
-            ]
+        
+        socket.on('create-node', (data) => {
+            let r = getSocketRoom(socket.id);
+            r.updates.push(data);
+            console.log(r);
         });
     });
 }
@@ -77,6 +46,15 @@ function createRoom(rootName) {
         rooms.push(r);
         resolve(r);
     });
+}
+
+function getSocketRoom(socketId) {
+    for (let i = 0; i < rooms.length; i++) {
+        if (rooms[i].connections.includes(socketId)) {
+            return rooms[i];
+        }
+    }
+    return null;
 }
 
 function getRoom(roomNum) {

@@ -2,6 +2,10 @@ class Room {
     constructor(number, rootName) {
         this.num = number;
         this.rootName = rootName;
+        this.updates = [{
+            type: "createRoot",
+            root: rootName
+        }];
         this.connections = [];
     }
 
@@ -16,7 +20,7 @@ class Room {
             }
         }
     }
-    
+
     isEmpty() {
         return this.connections.length == 0;
     }

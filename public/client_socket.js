@@ -1,9 +1,24 @@
 
+/*
+    Format to send through socket
+  {type: "create", created: "name", parent: "parent-name"}
+  {type: "modify", old: "oldname", new: "newname", parent: "parent-name"}
+  {type: "createRoot", root: "root-name"} 
+*/
+
 const urlParams = new URLSearchParams(window.location.search);
 let url = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`
 console.log(`URL: ${url}`);
 var socket = io(url, {query: `num=${urlParams.get("num")}`});
-
-socket.on('announcement', (data) => {
-    console.log(data);
+let addNodeBtn = document.getElementById('addNodeBtn');
+addNodeBtn.addEventListener('click', () => {
+    emitCreateNode("wheel", "car");
 });
+
+function emitCreateNode(created, parent) {
+    socket.emit('create-node', {
+        type: 'create',
+        created: created,
+        parent: parent
+    });
+}
