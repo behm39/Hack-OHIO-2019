@@ -94,19 +94,7 @@
 
             container: document.getElementById('cy'), // container to render in
 
-            elements: buildElements(myObj)
-
-            /*elements: [ // list of graph elements to start with
-                { // node a
-                    data: { id: 'a' }
-                },
-                { // node b
-                    data: { id: 'b' }
-                },
-                { // edge ab
-                    data: { id: 'ab', source: 'a', target: 'b' }
-                }
-            ],*/,
+            elements: buildElements(myObj),
 
             style: [ // the stylesheet for the graph
                 {
@@ -150,8 +138,15 @@
         $('#save').click(function () {
             let checked = $("input[type='radio']:checked").val();
             let newVal = $("#textValue").val();
-            let modalLabel = $('#exampleModalLabel').text();
+            let parent = $('#exampleModalLabel').text();
+    
+            addNode(newVal, parent);
         });
+
+        function addNode(newVal, parent) {
+            cy.add({ group: 'nodes', data: { id: newVal }});
+            cy.add({ group: 'edges', data: {source: parent, target: newVal}});
+        }
 
     </script>
     <script src="client_socket.js"></script>
