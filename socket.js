@@ -15,6 +15,8 @@ function initSockets(server) {
         r.addConnection(socket.id);
         socket.join(roomNum);
 
+        socket.emit('send-data', r.structure);
+
         console.log(rooms);
 
         socket.on('disconnect', (reason) => {
