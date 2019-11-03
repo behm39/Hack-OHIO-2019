@@ -23,6 +23,7 @@ addNodeBtn.addEventListener('click', () => {
 
 socket.on('create-node', (data) => {
     console.log(data);
+    addNode(data.created, data.parent);
 })
 
 function emitCreateNode(created, parent) {
