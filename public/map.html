@@ -62,7 +62,7 @@
         function buildElements(data) {
             var elements = [];
             // push root
-            elements.push({ data: { id: data.root } })
+            elements.push({ data: { id: data.root}, style: {'background-color': '#ff0000'} })
             let nodes = data.nodes;
             // push nodes
             for (let i = 0; i < nodes.length; i++) {
