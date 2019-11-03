@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 app.get('/room', (req, res) => {
     let roomNum = req.query.num;
     if (sockets.roomExists(roomNum)) {
-        return res.sendFile(__dirname + '/public/room.html');
+        return res.sendFile(__dirname + '/public/map.html');
     } else {
         return res.sendFile(__dirname + '/public/error.html');
     }

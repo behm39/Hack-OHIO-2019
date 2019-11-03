@@ -16,7 +16,7 @@
 
 <body>
 
-    <h1 id="code">Code</h1>
+    <h1 id="code"></h1>
       
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -48,8 +48,11 @@
 
     <div id="cy"></div>
     <script>
+    
         // var cytoscape = require('cytoscape');
-
+        var codeElmt = document.getElementById('code');
+        codeElmt.innerHTML = "Room Code: " +  (new URLSearchParams(window.location.search)).get("num");
+        
         var myObj = {
             root: "car", nodes: [
                 { val: "wheel", parent: "car" },
@@ -149,7 +152,7 @@
         });
 
     </script>
-
+    <script src="client_socket.js"></script>
 </body>
 
 </html>
