@@ -16,11 +16,6 @@ socket.on('send-data', (data) => {
     cy.json({elements: buildElements(data)});
 });
 
-let addNodeBtn = document.getElementById('addNodeBtn');
-addNodeBtn.addEventListener('click', () => {
-    emitCreateNode("wheel", "car");
-});
-
 socket.on('create-node', (data) => {
     console.log(data);
     addNode(data.created, data.parent);
