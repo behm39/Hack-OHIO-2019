@@ -17,7 +17,17 @@ function initSockets(server) {
 
         socket.on('disconnect', (reason) => {
             console.log(`Disconnect: ${socket.id}`);
-            getRoom(roomNum).removeConnection(socket.id);
+            let r = getRoom(roomNum);
+            r.removeConnection(socket.id);
+            if (r.isEmpty()) {
+                // TODO: Add this to the DB
+                for (let i = rooms.length; i >= 0; i--) {
+                    if (r == rooms[i]) {
+                        rooms.splice(i, 1);
+                        break;
+                    }
+                }
+            }
             console.log(rooms);
         });
 
