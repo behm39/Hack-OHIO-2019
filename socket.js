@@ -1,4 +1,5 @@
 var Room = require('./room').Room;
+var listToDB = require('./myDB').listToDB;
 
 var rooms = [];
 
@@ -20,7 +21,7 @@ function initSockets(server) {
             let r = getRoom(roomNum);
             r.removeConnection(socket.id);
             if (r.isEmpty()) {
-                // TODO: Add r.updates to the DB
+                listToDB(r.updates);
                 for (let i = rooms.length; i >= 0; i--) {
                     if (r == rooms[i]) {
                         rooms.splice(i, 1);
