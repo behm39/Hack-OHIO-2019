@@ -17,26 +17,40 @@
 
     <h1>Code</h1>
 
+
     <!-- Modal HTML embedded directly into document -->
     <div id="ex1" class="modal">
-            <div class="container">
-                    <form>
-                        <label class="radio-inline">
-                            <input type="radio" name="optradio" checked>Add
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="optradio">Remove
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="optradio">Modify
-                        </label>
-                    </form>
-                </div>
-        <a href="#" rel="modal:close">Close</a>
-    </div>
+        <input type="radio" name="action" value="add" checked> Add
+        <input type="text" >	
 
-    <!-- Link to open the modal -->
-    <p><a href="#ex1" rel="modal:open">Actions</a></p>
+        </br>
+
+        <input type="radio" name="action" value="remove"> Remove
+        <input type="text" >	
+
+        </br>
+
+        <input type="radio" name="action" value="edit"> Edit
+        <input type="text" >	
+
+        </br>
+
+        <a id="submit" href="#" rel="modal:close">Submit</a>
+    </div>
+      
+      <!-- Link to open the modal -->
+        <div id="actions">
+            <p><a href="#ex1" rel="modal:open">Actions</a></p>
+        </div>
+        
+
+
+
+
+
+
+
+
 
     <div id="cy"></div>
     <script>
@@ -128,6 +142,7 @@
         });
 
         cy.on('click', 'node', function (evt) {
+            $('#ex1').click();
             var node = evt.target
             console.log('clicked ' + node.id());
             console.log(node);

@@ -6,8 +6,27 @@
     background-color: black !important;
 }
 
+#actions {
+    background-color: black;
+    color: #428bca;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+#submit {
+    float: right;
+}
+
 body {
     background-color: black;
-    color: white;
+    color: #428bca;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+a:link {
+    color: #428bca;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+a:hover {
+    color: #42dfff;
 }
