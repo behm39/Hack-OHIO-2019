@@ -18,10 +18,12 @@
 </head>
 
 <body>
-
-    <div id="cy"></div>
+    <h1 id="roomCode"></h1>
     <button id="addNodeBtn">Add Node</button>
+    <div id="cy"></div>
     <script>
+        document.getElementById('roomCode').innerHTML = "Room Code: " + new URLSearchParams(window.location.search).get("num");
+
         // var cytoscape = require('cytoscape');
 
         var myObj = {
