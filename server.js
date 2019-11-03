@@ -30,7 +30,7 @@ app.post('/host-upload', (req, res) => {
     }
     console.log(req.files);
     let upload = req.files.myfile;
-    let data = JSON.parse(upload.data);
+    let data = JSON.parse(upload.data.toString());
     sockets.createRoom(data.root, data).then((room) => {
         console.log(`Loading Room: ${room.num}; Subject: ${data.root}`);
         return res.redirect(`/room?num=${room.num}`);

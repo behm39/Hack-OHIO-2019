@@ -1,0 +1,7 @@
+{
+    "root": "car",
+    "nodes": [
+        {"val": "wheel", "parent": "car"},
+        {"val": "rim", "parent": "wheel"}
+    ]
+}
