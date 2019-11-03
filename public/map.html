@@ -59,11 +59,6 @@
         var codeElmt = document.getElementById('code');
         codeElmt.innerHTML = "Room Code: " + (new URLSearchParams(window.location.search)).get("num");
 
-        var myObj = {
-            root: "car", nodes: [
-                { val: "wheel", parent: "car" }]
-        };
-
         function buildElements(data) {
             var elements = [];
             // push root
@@ -80,8 +75,6 @@
             return elements;
         }
 
-        console.log(buildElements(myObj));
-
         var cy = cytoscape({
 
             minZoom: 1 / 10,
@@ -89,7 +82,7 @@
 
             container: document.getElementById('cy'), // container to render in
 
-            elements: buildElements(myObj),
+            elements: [],
 
             style: [ // the stylesheet for the graph
                 {
