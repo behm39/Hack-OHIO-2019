@@ -56,16 +56,7 @@
         
         var myObj = {
             root: "car", nodes: [
-                { val: "wheel", parent: "car" },
-                { val: "door", parent: "car" },
-                { val: "console", parent: "car" },
-                { val: "seat", parent: "car" },
-                { val: "leather", parent: "seat" },
-                { val: "cushion", parent: "seat" },
-                { val: "fabric", parent: "seat" },
-                { val: "hood", parent: "car" },
-                { val: "center", parent: "console" }
-            ]
+                { val: "wheel", parent: "car" }]
         };
 
         function buildElements(data) {
@@ -85,7 +76,6 @@
         }
 
         console.log(buildElements(myObj));
-
 
         var cy = cytoscape({
 

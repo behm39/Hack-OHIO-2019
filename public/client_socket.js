@@ -11,7 +11,10 @@ let url = `${window.location.protocol}//${window.location.hostname}:${window.loc
 console.log(`URL: ${url}`);
 var socket = io(url, {query: `num=${urlParams.get("num")}`});
 
-
+socket.on('send-data', (data) => {
+    console.log('socket data' + JSON.stringify(data));
+    cy.json({elements: buildElements(data)});
+});
 
 let addNodeBtn = document.getElementById('addNodeBtn');
 addNodeBtn.addEventListener('click', () => {
