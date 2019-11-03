@@ -21,7 +21,7 @@ class Room {
     addNode(data) {
         this.updates.push(data);
         this.structure.nodes.push({
-            node: data.created,
+            val: data.created,
             parent: data.parent
         });
     }
