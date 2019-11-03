@@ -29,24 +29,19 @@
               </button>
             </div>
             <div class="modal-body">
-                    <input type="radio" name="action" value="add" checked> Add
+                    <input id="add" type="radio" name="action" value="add" checked> Add Child:
                     <input type="text" >	
             
                     </br>
             
-                    <input type="radio" name="action" value="remove"> Remove
-                    <input type="text" >	
-            
-                    </br>
-            
-                    <input type="radio" name="action" value="edit"> Edit
+                    <input id="edit" type="radio" name="action" value="edit"> Edit Text:
                     <input type="text" >	
             
                     </br>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button id="save" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
             </div>
           </div>
         </div>
@@ -148,6 +143,10 @@
             $("#exampleModal").modal('show');
 
             $('#ex1').show();
+        });
+
+        $('#save').click(function () {
+            alert($('input[action]:checked').val());
         });
 
     </script>
