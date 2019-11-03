@@ -12,6 +12,9 @@ function initSockets(server) {
         // add the socket to the room
         let roomNum = socket.handshake.query.num;
         let r = getRoom(roomNum);
+        if (!r) {
+            return;
+        }
         r.addConnection(socket.id);
         socket.join(roomNum);
 

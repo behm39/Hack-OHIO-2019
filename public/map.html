@@ -35,13 +35,13 @@
                     </button>
                 </div>
                 <div id="modal-body" class="modal-body">
-                    <input id="add" type="radio" name="action" value="add" checked> Add Child:
+                    <!--input id="add" type="radio" name="action" value="add" checked> Add Child:
 
                     <input id="edit" type="radio" name="action" value="edit"> Edit Text:
 
-                    </br>
+                    </br-->
 
-                    <input id="textValue" type="text" placeholder="Node Value">
+                    <input id="textValue" type="text" placeholder="Child Value">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -59,11 +59,6 @@
         var codeElmt = document.getElementById('code');
         codeElmt.innerHTML = "Room Code: " + (new URLSearchParams(window.location.search)).get("num");
 
-        var myObj = {
-            root: "car", nodes: [
-                { val: "wheel", parent: "car" }]
-        };
-
         function buildElements(data) {
             var elements = [];
             // push root
@@ -80,8 +75,6 @@
             return elements;
         }
 
-        console.log(buildElements(myObj));
-
         var cy = cytoscape({
 
             minZoom: 1 / 10,
@@ -89,7 +82,7 @@
 
             container: document.getElementById('cy'), // container to render in
 
-            elements: buildElements(myObj),
+            elements: [],
 
             style: [ // the stylesheet for the graph
                 {
@@ -131,7 +124,7 @@
         });
 
         $('#save').click(function () {
-            let checked = $("input[type='radio']:checked").val();
+            //let checked = $("input[type='radio']:checked").val();
             let newVal = $("#textValue").val();
             let parent = $('#exampleModalLabel').text();
 

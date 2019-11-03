@@ -1,0 +1,12 @@
+{
+    "root": "car",
+    "nodes": [
+        {"val": "wheel", "parent": "car"},
+        {"val": "tire", "parent": "wheel"},
+        {"val": "hood", "parent": "car"},
+        {"val": "spoiler", "parent": "car"},
+        {"val": "fast", "parent": "car"},
+        {"val": "engine", "parent": "car"},
+        {"val": "piston", "parent": "engine"}
+    ]
+}
