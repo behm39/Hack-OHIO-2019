@@ -14,6 +14,10 @@
     float: right;
 }
 
+#modal-body {
+    text-align: center;
+}
+
 body {
     background-color: black;
     color: #0275d8;
