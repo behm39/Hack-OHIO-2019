@@ -40,10 +40,10 @@ function initSockets(server) {
     });
 }
 
-function createRoom(rootName) {
+function createRoom(rootName, structure) {
     return new Promise((resolve, reject) => {
         let num = generateNumber();
-        let r = new Room(num, rootName);
+        let r = new Room(num, rootName, structure);
         rooms.push(r);
         resolve(r);
     });

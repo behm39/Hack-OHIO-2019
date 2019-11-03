@@ -3,7 +3,7 @@ const app = express();
 const sockets = require('./socket');
 const fileUpload = require('express-fileupload');
 
-let PORT = process.env.PORT || 8000; 
+let PORT = process.env.PORT || 8000;
 
 app.use(fileUpload());
 
@@ -30,8 +30,11 @@ app.post('/host-upload', (req, res) => {
     }
     console.log(req.files);
     let upload = req.files.myfile;
-    
-    return res.send("The file '" + upload.name + "' with data '" + upload.data + "' has been uploaded...");
+    let data = JSON.parse(upload.data);
+    sockets.createRoom(data.root, data).then((room) => {
+        console.log(`Loading Room: ${room.num}; Subject: ${data.root}`);
+        return res.redirect(`/room?num=${room.num}`);
+    });
 });
 
 app.get('/host', (req, res) => {
