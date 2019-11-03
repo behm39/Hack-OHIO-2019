@@ -11,7 +11,7 @@ function initSockets(server) {
         // add the socket to the room
         let roomNum = socket.handshake.query.num;
         getRoom(roomNum).addConnection(socket.id);
-        socket.join('roomNum');
+        socket.join(roomNum);
 
         console.log(rooms);
 
@@ -30,11 +30,15 @@ function initSockets(server) {
             }
             console.log(rooms);
         });
-        
+
         socket.on('create-node', (data) => {
             let r = getSocketRoom(socket.id);
             r.updates.push(data);
             console.log(r);
+            for (let i = 0; i < r.updates.length; i++) {
+                console.log(r.updates[i]);
+            }
+            io.to(roomNum).emit('create-node', data);
         });
     });
 }

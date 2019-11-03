@@ -15,6 +15,10 @@ addNodeBtn.addEventListener('click', () => {
     emitCreateNode("wheel", "car");
 });
 
+socket.on('create-node', (data) => {
+    console.log(data);
+})
+
 function emitCreateNode(created, parent) {
     socket.emit('create-node', {
         type: 'create',
