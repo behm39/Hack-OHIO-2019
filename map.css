@@ -6,10 +6,8 @@
     background-color: black !important;
 }
 
-#actions {
-    background-color: black;
-    color: #428bca;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+#code {
+    margin-left: 3%;
 }
 
 #submit {
@@ -18,15 +16,6 @@
 
 body {
     background-color: black;
-    color: #428bca;
+    color: #42abca;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-}
-
-a:link {
-    color: #428bca;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-}
-
-a:hover {
-    color: #42dfff;
 }
