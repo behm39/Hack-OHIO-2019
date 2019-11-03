@@ -3,7 +3,7 @@ const app = express();
 const sockets = require('./socket');
 const fileUpload = require('express-fileupload');
 
-let PORT = process.env.PORT || 8000; 
+let PORT = process.env.PORT || 8000;
 
 app.use(fileUpload());
 
@@ -18,9 +18,9 @@ app.get('/', (req, res) => {
 app.get('/room', (req, res) => {
     let roomNum = req.query.num;
     if (sockets.roomExists(roomNum)) {
-        return res.sendFile(__dirname + '/public/room.html');
+        return res.sendFile(__dirname + '/public/map.html');
     } else {
-        return res.redirect("https://google.com/teapot");
+        return res.sendFile(__dirname + '/public/error.html');
     }
 });
 
@@ -30,8 +30,11 @@ app.post('/host-upload', (req, res) => {
     }
     console.log(req.files);
     let upload = req.files.myfile;
-    
-    return res.send("The file '" + upload.name + "' with data '" + upload.data + "' has been uploaded...");
+    let data = JSON.parse(upload.data);
+    sockets.createRoom(data.root, data).then((room) => {
+        console.log(`Loading Room: ${room.num}; Subject: ${data.root}`);
+        return res.redirect(`/room?num=${room.num}`);
+    });
 });
 
 app.get('/host', (req, res) => {

@@ -1,12 +1,29 @@
 class Room {
-    constructor(number, rootName) {
+    constructor(number, rootName, structure) {
         this.num = number;
         this.rootName = rootName;
+        this.structure = structure || {
+            root: rootName,
+            nodes: []
+        };
+
+        this.updates = [{
+            type: "createRoot",
+            root: rootName
+        }];
         this.connections = [];
     }
 
     addConnection(connection) {
         this.connections.push(connection);
+    }
+
+    addNode(data) {
+        this.updates.push(data);
+        this.structure.nodes.push({
+            val: data.created,
+            parent: data.parent
+        });
     }
 
     removeConnection(connection) {
@@ -16,7 +33,7 @@ class Room {
             }
         }
     }
-    
+
     isEmpty() {
         return this.connections.length == 0;
     }

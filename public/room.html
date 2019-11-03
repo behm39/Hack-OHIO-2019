@@ -18,9 +18,12 @@
 </head>
 
 <body>
-
+    <h1 id="roomCode"></h1>
+    <button id="addNodeBtn">Add Node</button>
     <div id="cy"></div>
     <script>
+        document.getElementById('roomCode').innerHTML = "Room Code: " + new URLSearchParams(window.location.search).get("num");
+
         // var cytoscape = require('cytoscape');
 
         var myObj = {
@@ -54,9 +57,12 @@
         }
 
         console.log(buildElements(myObj));
-        
+
 
         var cy = cytoscape({
+
+            minZoom: 1 / 10,
+            maxZoom: 10,
 
             container: document.getElementById('cy'), // container to render in
 
@@ -78,18 +84,23 @@
                 {
                     selector: 'node',
                     style: {
-                        'background-color': '#666',
+                        'background-color': '#ffffff',
                         'label': 'data(id)'
                     }
                 },
-
                 {
                     selector: 'edge',
                     style: {
                         'width': 3,
-                        'line-color': '#ccc',
-                        'target-arrow-color': '#ccc',
+                        'line-color': '#002C5A',
+                        'target-arrow-color': '#002C5A',
                         'target-arrow-shape': 'triangle'
+                    }
+                },
+                {
+                    selector: 'text',
+                    style: {
+                        'color': '#0275d8'
                     }
                 }
             ],
@@ -100,7 +111,21 @@
 
         });
 
+        cy.on('click', 'node', function (evt) {
+            var node = evt.target
+            $("#exampleModalLabel").text(node.id());
+            $("#exampleModal").modal('show');
+
+            $('#ex1').show();
+        });
+
+        $('#save').click(function () {
+            let checked = $("input[type='radio']:checked").val();
+            let newVal = $("#textValue").val();
+        });
+
     </script>
+
     <script src="./client_socket.js"></script>
 </body>
 
