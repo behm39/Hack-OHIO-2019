@@ -29,24 +29,23 @@
               </button>
             </div>
             <div class="modal-body">
-                    <input type="radio" name="action" value="add" checked> Add
+                    <input id="add" type="radio" name="action" value="add" checked> Add Child:
                     <input type="text" >	
             
                     </br>
             
-                    <input type="radio" name="action" value="remove"> Remove
-                    <input type="text" >	
-            
-                    </br>
-            
-                    <input type="radio" name="action" value="edit"> Edit
+                    <input id="edit" type="radio" name="action" value="edit"> Edit Text:
                     <input type="text" >	
             
                     </br>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<<<<<<< HEAD
               <button type="button" class="btn btn-primary"data-dismiss="modal">Save changes</button>
+=======
+              <button id="save" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+>>>>>>> d7055b20bef2ea260f53f0acf4804898a3c5c626
             </div>
           </div>
         </div>
@@ -123,15 +122,15 @@
                     selector: 'edge',
                     style: {
                         'width': 3,
-                        'line-color': '#c0c0c0c',
-                        'target-arrow-color': '#c0c0c0c',
+                        'line-color': '#002C5A',
+                        'target-arrow-color': '#002C5A',
                         'target-arrow-shape': 'triangle'
                     }
                 },
                 {
                     selector: 'text',
                     style: {
-                        'color': '#42abff'
+                        'color': '#0275d8'
                     }
                 }
             ],
@@ -148,6 +147,10 @@
             $("#exampleModal").modal('show');
 
             $('#ex1').show();
+        });
+
+        $('#save').click(function () {
+            alert($('input[action]:checked').val());
         });
 
     </script>
