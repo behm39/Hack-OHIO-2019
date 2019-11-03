@@ -1,0 +1,13 @@
+#cy {
+    width: 1400px;
+    height: 600px;
+    display: block;
+    color:white !important;
+    background-color: black !important;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
